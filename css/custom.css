@@ -355,7 +355,7 @@ input:-webkit-autofill:focus {
 /* line 75, less/custom.less */
 @media -sass-debug-info{filename{font-family:file\:\/\/less\/custom\.less}line{font-family:\0000375}}
 .modal.fade.in {
-  top: 50%;
+  top: 55% !important;
 }
 /* line 76, less/custom.less */
 @media -sass-debug-info{filename{font-family:file\:\/\/less\/custom\.less}line{font-family:\0000376}}
