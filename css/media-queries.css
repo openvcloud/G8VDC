@@ -365,5 +365,10 @@
 		font-size: 10px !important;
 	}
 }
+@media (max-height: 350px){
+	.modal{
+		top: 85% !important;
+	}
+}
 
 /* End of Media Queries */
