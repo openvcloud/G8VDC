@@ -47,9 +47,10 @@
     function buildAccountCloudSpaceHierarchy() {
       var cloudspacesGroups = _.groupBy($scope.cloudspaces, 'accountId');
       var accountCloudSpaceHierarchy = [];
+      var account;
       for (var accountId in cloudspacesGroups) {
         var firstCloudSpace = cloudspacesGroups[accountId][0];
-        var account = {
+        account = {
           id: accountId,
           name: firstCloudSpace['accountName'],
           DCLocation: firstCloudSpace['accountDCLocation']
@@ -72,21 +73,21 @@
         accountCloudSpaceHierarchy.push(account);
       }
       for (var idx in $scope.accounts) {
-        var accounts = $scope.accounts[idx];
+        account = $scope.accounts[idx];
         var accountfound = false;
         for (var accountidx in accountCloudSpaceHierarchy) {
           var hierarchyaccount = accountCloudSpaceHierarchy[accountidx];
-          if (hierarchyaccount.id === accounts.id) {
+          if (hierarchyaccount.id === account.id) {
             accountfound = true;
             break;
           }
         }
         if (!accountfound) {
           var hierarchyaccounts = {
-            id: accounts.id,
-            name: accounts.name,
+            id: account.id,
+            name: account.name,
             cloudspaces: [],
-            acl: accounts.acl
+            acl: account.acl
           };
           accountCloudSpaceHierarchy.push(hierarchyaccounts);
         }
