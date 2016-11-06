@@ -39,7 +39,7 @@
         $scope.updateResultMessage = 'The given passwords do not match.';
         return;
       }
-      Users.resetPassword(resettoken,$scope.newPassword)
+      Users.resetPassword(resettoken, $scope.newPassword)
       .then(
         function() {
           $scope.verificationStatus = 'SUCCEEDED';

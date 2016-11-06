@@ -12,7 +12,7 @@
     $scope.machineinfo = {};
     $scope.numeral = numeral;
     $scope.updateMachineList = updateMachineList;
-    $scope.$watch('currentSpace.id',currentSpaceId);
+    $scope.$watch('currentSpace.id', currentSpaceId);
     $scope.$watch('currentspace.accountId', currentSpaceAccountId);
     $scope.$watch('currentSpace', currentSpaceAccountId);
     $rootScope.$on('callUpdateMachineList', callUpdateMachineList);
@@ -55,7 +55,7 @@
 
       if ($location.search().cloudspaceId) {
         cloudspaceId = parseInt($location.search().cloudspaceId);
-        $scope.$watch('cloudspaces',function() {
+        $scope.$watch('cloudspaces', function() {
           if ($scope.cloudspaces) {
             var navigatedSpace = _.findWhere($scope.cloudspaces, {id: parseInt($location.search().cloudspaceId)});
             if (navigatedSpace) {
@@ -82,7 +82,7 @@
         $scope.updateMachineList();
         Size.list($scope.currentSpace.id).then(function(sizes) {
           $scope.sizes = sizes;
-        },function(reason) {
+        }, function(reason) {
           $ErrorResponseAlert(reason);
         });
       }

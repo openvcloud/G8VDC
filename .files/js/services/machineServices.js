@@ -242,31 +242,31 @@ angular.module('cloudscalers.services')
         if (data === 'None') {
           getConsoleUrlResult.error = status;
         } else {
-           getConsoleUrlResult.url = JSON.parse(data);
-         }
-       }).error(function(data, status) {
-         getConsoleUrlResult.error = status;
-       });
-        return getConsoleUrlResult;
-      },
+          getConsoleUrlResult.url = JSON.parse(data);
+        }
+      }).error(function(data, status) {
+        getConsoleUrlResult.error = status;
+      });
+      return getConsoleUrlResult;
+    },
     getHistory: function(machineId) {
       var data = {machineId: machineId, size: 100};
       var url = cloudspaceconfig.apibaseurl + '/machines/getHistory';
       return $http.post(url, data).then(
         function(result) {
           return result.data;
-        },function(reason) {
+        }, function(reason) {
           return $q.reject(reason);
         }
       );
     },
     deleteTemplate: function(templateIndex) {
-      var data = {templateIndex: templateIndex}
+      // var data = {templateIndex: templateIndex}
       return $http.post(cloudspaceconfig.apibaseurl + '/template/delete?templateIndex=' + templateIndex)
       .then(
         function(result) {
           return result.data;
-        },function(reason) {
+        }, function(reason) {
           return $q.reject(reason);
         }
       );
@@ -288,7 +288,7 @@ angular.module('cloudscalers.services')
       );
     },
     deleteUser: function(machineId, user) {
-      var data = {machineId: machineId, accesstype: accessType, userId: user};
+      var data = {machineId: machineId, userId: user};
       return $http.post(cloudspaceconfig.apibaseurl + '/machines/deleteUser', data)
       .then(
         function(result) { return result.data; },
@@ -376,10 +376,10 @@ angular.module('cloudscalers.services')
       var data = {cloudspaceId: cloudspaceId, accountId: accountId};
       var url = cloudspaceconfig.apibaseurl + '/images/list';
       return $http.post(url, data).then(
-        function(result){
+        function(result) {
           return result.data;
         },
-        function(reason){
+        function(reason) {
           return $q.reject(reason);
         }
       );
@@ -394,7 +394,7 @@ angular.module('cloudscalers.services')
       .then(
         function(result) {
           return result.data;
-        },function(reason) {
+        }, function(reason) {
           return $q.reject(reason);
         }
       );

@@ -23,7 +23,7 @@
     // Functions
     function listLocationsAndAccounts() {
       if ($scope.currentUser === undefined) {
-         return; // we are not logged in skip listing accounts
+        return; // we are not logged in skip listing accounts
       }
       LocationsService.list().then(function(locations) {
         $scope.locations = locations;
@@ -39,16 +39,18 @@
       var anchor = $($event.currentTarget);
       $(anchor.attr('href')).toggleClass('collapse');
       $(anchor.attr('href')).toggleClass('open');
-      anchor.parents('.panel-group').find('.panel-heading.open').not(anchor.parents('.panel-heading')).removeClass('open');
+      anchor.parents('.panel-group').find('.panel-heading.open')
+        .not(anchor.parents('.panel-heading')).removeClass('open');
       anchor.parents('.panel-heading').toggleClass('open');
-    }
+    };
 
     function buildAccountCloudSpaceHierarchy() {
       var cloudspacesGroups = _.groupBy($scope.cloudspaces, 'accountId');
       var accountCloudSpaceHierarchy = [];
+      var account;
       for (var accountId in cloudspacesGroups) {
         var firstCloudSpace = cloudspacesGroups[accountId][0];
-        var account = {
+        account = {
           id: accountId,
           name: firstCloudSpace['accountName'],
           DCLocation: firstCloudSpace['accountDCLocation']
@@ -71,31 +73,31 @@
         accountCloudSpaceHierarchy.push(account);
       }
       for (var idx in $scope.accounts) {
-          var account = $scope.accounts[idx];
-          var accountfound = false;
-          for (var accountidx in accountCloudSpaceHierarchy) {
-              var hierarchyaccount = accountCloudSpaceHierarchy[accountidx];
-              if (hierarchyaccount.id == account.id) {
-                  accountfound = true;
-                  break;
-              }
+        account = $scope.accounts[idx];
+        var accountfound = false;
+        for (var accountidx in accountCloudSpaceHierarchy) {
+          var hierarchyaccount = accountCloudSpaceHierarchy[accountidx];
+          if (hierarchyaccount.id === account.id) {
+            accountfound = true;
+            break;
           }
-          if (!accountfound) {
-              var hierarchyaccount = {
-                id: account.id,
-                name: account.name,
-                cloudspaces: [],
-                acl: account.acl,
-              };
-              accountCloudSpaceHierarchy.push(hierarchyaccount);
-          }
+        }
+        if (!accountfound) {
+          var hierarchyaccounts = {
+            id: account.id,
+            name: account.name,
+            cloudspaces: [],
+            acl: account.acl
+          };
+          accountCloudSpaceHierarchy.push(hierarchyaccounts);
+        }
       }
-      $scope.noAccount = accountCloudSpaceHierarchy.length == 0;
+      $scope.noAccount = accountCloudSpaceHierarchy.length === 0;
       $scope.AccountCloudSpaceHierarchy = accountCloudSpaceHierarchy;
     }
     function cloudspacesAndAccounts() {
       if ($scope.currentUser === undefined) {
-         return; // skip when not logged in
+        return; // skip when not logged in
       }
       buildAccountCloudSpaceHierarchy();
     }
@@ -164,18 +166,18 @@
       );
       $scope.setCurrentAccount(currentAccountId);
       // e.stopPropagation();
-      if($('.dropdown-accordion').hasClass('open')) {
+      if ($('.dropdown-accordion').hasClass('open')) {
         $('.dropdown-accordion').removeClass('open');
       }
-      $timeout(function(){
+      $timeout(function() {
         $window.location.assign('#/AccountSettings');
-      },1);
+      }, 1);
     }
   }
 
   function nospace() {
-      return function(value) {
-       return (!value) ? '' : value.replace(/[\s\.]/g, '');
-      };
-    }
+    return function(value) {
+      return (!value) ? '' : value.replace(/[\s\.]/g, '');
+    };
+  }
 })();

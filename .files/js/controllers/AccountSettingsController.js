@@ -98,12 +98,12 @@
         access: $scope.accessTypes[0].value
       };
     }
-    function resetSearchQuery() {
-      $scope.emailMode = false;
-      $scope.searchQuery = '';
-    }
+    // function resetSearchQuery() {
+    //   $scope.emailMode = false;
+    //   $scope.searchQuery = '';
+    // }
     function loadAccountAcl() {
-      if($scope.currentAccount.id){
+      if ($scope.currentAccount.id) {
         return Account.get($scope.currentAccount.id)
         .then(function(account) {
           $scope.currentAccount.userRightsOnAccount = account.acl;
@@ -247,9 +247,9 @@
           }));
         });
 
-        var emailInvited = _.find($scope.currentAccount.userRightsOnAccount, function(user) {
-          return user.userGroupId === query;
-        });
+        // var emailInvited = _.find($scope.currentAccount.userRightsOnAccount, function(user) {
+        //   return user.userGroupId === query;
+        // });
 
         // resolve the deferred object
         deferred.resolve({results: results});

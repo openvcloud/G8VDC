@@ -124,12 +124,12 @@
           scope: $scope
         });
 
-      modalInstance.result.then(function(data) {
+      modalInstance.result.then(function() {
         LoadingDialog.show('Creating Port Forward');
-          $timeout(function() {
-            LoadingDialog.hide()
+        $timeout(function() {
+            LoadingDialog.hide();
           }, 3000);
-        });
+      });
     }
 
     function editRuleController($scope, $modalInstance, editRule) {
@@ -233,7 +233,7 @@
       if ($scope.currentSpace) {
         if ($scope.currentSpace.status !== 'DEPLOYED') {
           if (!(angular.isDefined(cloudspaceupdater))) {
-            cloudspaceupdater = $interval($scope.loadSpaces,5000);
+            cloudspaceupdater = $interval($scope.loadSpaces, 5000);
           }
         } else {
           if (angular.isDefined(cloudspaceupdater)) {

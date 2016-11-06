@@ -6,15 +6,15 @@
     .controller('TemplateManagementController', TemplateManagementController);
 
   function TemplateManagementController($scope, Account, Image) {
-      $scope.filteredTemplates = [];
-      $scope.templates = Image.list($scope.currentAccount.id);
+    $scope.filteredTemplates = [];
+    $scope.templates = Image.list($scope.currentAccount.id);
 
-      //Binding and Watch
-      $scope.$watch('templates', template, true);
+    //Binding and Watch
+    $scope.$watch('templates', template, true);
 
-      // Function
-      function template() {
-        $scope.filteredTemplates = _.where($scope.templates, {'type': 'Custom Templates'});
-      }
+    // Function
+    function template() {
+      $scope.filteredTemplates = _.where($scope.templates, {'type': 'Custom Templates'});
     }
+  }
 })();

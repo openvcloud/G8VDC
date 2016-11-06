@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cloudscalers.services')
-.factory('authenticationInterceptor', function($q, SessionData, $window) {
+.factory('authenticationInterceptor', function($q, SessionData) {
   return {
     'request': function(config) {
       if (config) {

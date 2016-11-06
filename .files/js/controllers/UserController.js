@@ -5,12 +5,12 @@
     .module('cloudscalers.controllers')
     .controller('UsersController', UsersController);
 
-  function UsersController($scope, Users, SessionData, LoadingDialog, $ErrorResponseAlert, $timeout, $window) {
+  function UsersController($scope, Users, SessionData, LoadingDialog, $ErrorResponseAlert, $timeout) {
     $scope.updatePassword = function() {
       $scope.updateResultMessage = '';
       if ($scope.newPassword === $scope.retypePassword) {
         LoadingDialog.show();
-        Users.updatePassword($scope.$parent.currentUser.username, $scope.oldPassword ,$scope.newPassword)
+        Users.updatePassword($scope.$parent.currentUser.username, $scope.oldPassword , $scope.newPassword)
         .then(
           function(passwordResponse) {
             var passwordResponseCode = passwordResponse.data[0];
@@ -47,7 +47,7 @@
       Users.tourTipsSwitch($scope.tourSwitchFlag)
       .then(
         function() {
-        },function(reason) {
+        }, function(reason) {
           $ErrorResponseAlert(reason);
         }
       );

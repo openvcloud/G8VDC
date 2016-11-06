@@ -21,7 +21,7 @@ angular.module('cloudscalers')
           supportedSubmitMethods: ['get', 'post', 'put'],
           onComplete: function() {
             $('pre code').each(function(i, e) {hljs.highlightBlock(e);});
-            $('.toggleOperation').click(function(event){
+            $('.toggleOperation').click(function(event) {
               event.preventDefault();
             });
           },

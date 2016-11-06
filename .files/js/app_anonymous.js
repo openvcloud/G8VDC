@@ -12,7 +12,7 @@ cloudscalers
   $interpolateProvider.startSymbol('{[').endSymbol(']}');
 }]);
 
-angular.module('cloudscalers.services',['ng']);
+angular.module('cloudscalers.services', ['ng']);
 
 var cloudscalersControllers = angular.module('cloudscalers.controllers', [
   'ui.bootstrap',

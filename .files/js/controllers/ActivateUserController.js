@@ -9,7 +9,7 @@
     $scope.activateUserFunc = activateUserFunc;
 
     function getUrlParameter(sParam) {
-      var sPageURL = decodeURIComponent(window.location.hash.substring(1)).split("?")[1];
+      var sPageURL = decodeURIComponent(window.location.hash.substring(1)).split('?')[1];
       var sURLVariables = sPageURL.split('&');
       var sParameterName;
       var i;

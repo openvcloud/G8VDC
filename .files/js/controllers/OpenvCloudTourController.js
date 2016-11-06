@@ -53,7 +53,7 @@
               }
               Users.tourTipsSwitch(currentUserData['tourTips']).then(function() {
                 SessionData.setUser(currentUserData);
-              },function(reason) {
+              }, function(reason) {
                 $ErrorResponseAlert(reason);
               });
               return;
@@ -91,7 +91,7 @@
         var currentUserData = SessionData.getUser();
         currentUserData['tourTips'] = false;
         SessionData.setUser(currentUserData);
-      },function(reason) {
+      }, function(reason) {
         $ErrorResponseAlert(reason);
       });
     }

@@ -21,7 +21,7 @@
           uri.filename(target);
           $window.location = uri.toString();
         }
-      },function(reason) {
+      }, function(reason) {
         $scope.loginError = reason.status;
       });
     }

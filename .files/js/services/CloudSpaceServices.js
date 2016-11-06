@@ -13,7 +13,7 @@ angular.module('cloudscalers.services')
       .then(
         function(result) {
           return result.data;
-        },function(reason) {
+        }, function(reason) {
           return $q.reject(reason);
         });
     },
@@ -65,7 +65,7 @@ angular.module('cloudscalers.services')
     getOpenvpnConfig: function(cloudspaceId) {
       return $window.open(cloudspaceconfig.apibaseurl + '/cloudspaces/getOpenvpnConfig?cloudspaceId=' + cloudspaceId);
     },
-    addUser: function(space, user, accessType) {
+    addUser: function(cloudspaceId, space, user, accessType) {
       var data = {cloudspaceId: cloudspaceId, accesstype: accessType, userId: user};
       return $http.post(cloudspaceconfig.apibaseurl + '/cloudspaces/addUser', data)
       .then(
