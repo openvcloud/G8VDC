@@ -71,26 +71,26 @@
         account.cloudspaces = cloudspacesGroups[accountId];
         accountCloudSpaceHierarchy.push(account);
       }
-      // for (var idx in $scope.accounts) {
-      //     var account = $scope.accounts[idx];
-      //     var accountfound = false;
-      //     for (var accountidx in accountCloudSpaceHierarchy) {
-      //         var hierarchyaccount = accountCloudSpaceHierarchy[accountidx];
-      //         if (hierarchyaccount.id === account.id) {
-      //             accountfound = true;
-      //             break;
-      //         }
-      //     }
-      //     if (!accountfound) {
-      //         var hierarchyaccount = {
-      //           id: account.id,
-      //           name: account.name,
-      //           cloudspaces: [],
-      //           acl: account.acl,
-      //         };
-      //         accountCloudSpaceHierarchy.push(hierarchyaccount);
-      //     }
-      // }
+      for (var idx in $scope.accounts) {
+        var accounts = $scope.accounts[idx];
+        var accountfound = false;
+        for (var accountidx in accountCloudSpaceHierarchy) {
+          var hierarchyaccount = accountCloudSpaceHierarchy[accountidx];
+          if (hierarchyaccount.id === accounts.id) {
+            accountfound = true;
+            break;
+          }
+        }
+        if (!accountfound) {
+          var hierarchyaccounts = {
+            id: accounts.id,
+            name: accounts.name,
+            cloudspaces: [],
+            acl: accounts.acl
+          };
+          accountCloudSpaceHierarchy.push(hierarchyaccounts);
+        }
+      }
       $scope.noAccount = accountCloudSpaceHierarchy.length === 0;
       $scope.AccountCloudSpaceHierarchy = accountCloudSpaceHierarchy;
     }

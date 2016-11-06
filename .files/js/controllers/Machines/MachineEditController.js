@@ -309,13 +309,13 @@
         LoadingDialog.show('Deleting machine');
         Machine.delete($scope.machine.id).then(function() {
           LoadingDialog.hide();
-          // var machine = _.find($scope.machines, function(machine) {
-          //   $scope.machines.splice($scope.machines.indexOf(machine) , 1);
-          //   return machine.id === $scope.machine.id;
-          // });
-          // if (machines) {
-          //   machine.status = 'DESTROYED';
-          // }
+          var machine = _.find($scope.machines, function(machine) {
+            $scope.machines.splice($scope.machines.indexOf(machine) , 1);
+            return machine.id === $scope.machine.id;
+          });
+          if (machine) {
+            machine.status = 'DESTROYED';
+          }
           $location.path('/list');
         }, function(reason) {
           LoadingDialog.hide();
