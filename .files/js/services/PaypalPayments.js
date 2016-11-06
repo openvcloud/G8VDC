@@ -11,7 +11,7 @@ angular.module('cloudscalers.services')
         function(result) {
           var info = {'paypalurl': result.data.paypalurl};
           return info;
-        },function(reason) {
+        }, function(reason) {
           return $q.reject(reason);
         }
       );

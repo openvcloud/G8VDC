@@ -225,9 +225,9 @@
           }));
         });
 
-        var emailInvited = _.find($scope.machine.acl, function(user) {
-          return user.userGroupId === query;
-        });
+        // var emailInvited = _.find($scope.machine.acl, function(user) {
+        //   return user.userGroupId === query;
+        // });
 
         // resolve the deferred object
         deferred.resolve({results: results});

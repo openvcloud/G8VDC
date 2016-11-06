@@ -52,7 +52,7 @@
       $scope.ok = function() {
         $modalInstance.close('confirmed');
       };
-      CryptoPayments.getPaymentInfo($scope.currentAccount.id,'BTC')
+      CryptoPayments.getPaymentInfo($scope.currentAccount.id, 'BTC')
       .then(
         function(result) {
           $scope.spinnerShow = true;
@@ -83,7 +83,7 @@
       $scope.ok = function() {
         $modalInstance.close('confirmed');
       };
-      CryptoPayments.getPaymentInfo($scope.currentAccount.id,'LTC').then(function(result) {
+      CryptoPayments.getPaymentInfo($scope.currentAccount.id, 'LTC').then(function(result) {
         $scope.spinnerShow = true;
         $scope.litecoin = true;
         $scope.paymentinfo = result;
@@ -110,7 +110,7 @@
     function showUsageDetails(reference) {
       var uri = new URI($window.location);
       uri.filename('UsageReport');
-      uri.addQuery('reference',reference);
+      uri.addQuery('reference', reference);
       $window.location = uri.toString();
     }
   }

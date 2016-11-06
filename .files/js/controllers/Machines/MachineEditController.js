@@ -51,7 +51,7 @@
     $scope.$watch('sizes', updateMachineSize, true);
     $scope.$watch('images', updateMachineSize, true);
     $scope.$watch('tabactive.snapshots', tabActiveSpanShots, true);
-    $scope.$watch('currentSpace.id',currentSpaceId);
+    $scope.$watch('currentSpace.id', currentSpaceId);
 
     // Initialization: Functions invokation logic
     $scope.clearDisk();
@@ -77,7 +77,7 @@
           $timeout(function() {
             LoadingDialog.hide();
           }, 1500);
-        },function(reason) {
+        }, function(reason) {
           LoadingDialog.hide();
           $ErrorResponseAlert(reason);
         }
@@ -90,7 +90,7 @@
         $scope.disk.description, $scope.disk.size, 'D').then(function() {
           $scope.getMachine();
           $scope.clearDisk();
-        },function(reason) {
+        }, function(reason) {
           LoadingDialog.hide();
           $ErrorResponseAlert(reason);
         }
@@ -117,7 +117,7 @@
         Machine.removeDisk(disk.id, true).then(function() {
           $scope.machine.disks.splice($scope.machine.disks.indexOf(disk), 1);
           LoadingDialog.hide();
-        },function(reason) {
+        }, function(reason) {
           $ErrorResponseAlert(reason);
           LoadingDialog.hide();
         });
@@ -149,7 +149,7 @@
               function() {
                 LoadingDialog.hide();
                 $modalInstance.close('ok');
-              },function(reason) {
+              }, function(reason) {
                 $ErrorResponseAlert(reason);
                 LoadingDialog.hide();
               }
@@ -177,7 +177,7 @@
     function machineACL(acl) {
       if ($scope.currentUser && acl && $scope.currentAccount.status !== 'DISABLED') {
         $scope.currentUser.acl.machine = 0;
-        var currentUserAccessright = _.find($scope.machine.acl ,function(acl) {
+        var currentUserAccessright = _.find($scope.machine.acl , function(acl) {
               return acl.userGroupId === $scope.currentUser.username;
             }).right.toUpperCase();
         if (currentUserAccessright === 'R') {
@@ -309,10 +309,10 @@
         LoadingDialog.show('Deleting machine');
         Machine.delete($scope.machine.id).then(function() {
           LoadingDialog.hide();
-          var machine = _.find($scope.machines, function(machine) {
-            return machine.id === $scope.machine.id;
-            $scope.machines.splice($scope.machines.indexOf(machine) , 1);
-          });
+          // var machine = _.find($scope.machines, function(machine) {
+          //   $scope.machines.splice($scope.machines.indexOf(machine) , 1);
+          //   return machine.id === $scope.machine.id;
+          // });
           // if (machines) {
           //   machine.status = 'DESTROYED';
           // }
@@ -445,154 +445,154 @@
     }
 
     function CloneMachineController($scope, $modalInstance) {
-        $scope.clone = {name: ''};
-        $scope.ok = function() {
-            $modalInstance.close($scope.clone.name);
-          };
+      $scope.clone = {name: ''};
+      $scope.ok = function() {
+          $modalInstance.close($scope.clone.name);
+        };
 
-        $scope.cancel = function() {
-            $modalInstance.dismiss('cancel');
-          };
-      }
+      $scope.cancel = function() {
+          $modalInstance.dismiss('cancel');
+        };
+    }
 
     function CreateTemplateController($scope, $modalInstance) {
-        $scope.createtemplate = {name: ''};
-        $scope.ok = function() {
-            $modalInstance.close($scope.createtemplate.name);
-          };
-        $scope.cancel = function() {
-            $modalInstance.dismiss('cancel');
-          };
-      }
+      $scope.createtemplate = {name: ''};
+      $scope.ok = function() {
+          $modalInstance.close($scope.createtemplate.name);
+        };
+      $scope.cancel = function() {
+          $modalInstance.dismiss('cancel');
+        };
+    }
 
     function cloneMachine() {
-        if ($scope.machine.status !== 'HALTED') {
-          $alert('A clone can only be taken from a stopped machine.');
-          return;
-        }
-        var modalInstance = $modal.open({
-          templateUrl: 'cloneMachineDialog.html',
-          controller: CloneMachineController,
-          resolve: {
-          }
-        });
-
-        modalInstance.result.then(function(cloneName) {
-          LoadingDialog.show('Creating clone');
-          Machine.clone($scope.machine, cloneName).then(
-            function(result) {
-              LoadingDialog.hide();
-              $location.path('/edit/' + result);
-            },
-            function(reason) {
-              LoadingDialog.hide();
-              $alert(reason.data);
-            }
-          );
-        });
+      if ($scope.machine.status !== 'HALTED') {
+        $alert('A clone can only be taken from a stopped machine.');
+        return;
       }
+      var modalInstance = $modal.open({
+        templateUrl: 'cloneMachineDialog.html',
+        controller: CloneMachineController,
+        resolve: {
+        }
+      });
+
+      modalInstance.result.then(function(cloneName) {
+        LoadingDialog.show('Creating clone');
+        Machine.clone($scope.machine, cloneName).then(
+          function(result) {
+            LoadingDialog.hide();
+            $location.path('/edit/' + result);
+          },
+          function(reason) {
+            LoadingDialog.hide();
+            $alert(reason.data);
+          }
+        );
+      });
+    }
 
     function createTemplate() {
-        var modalInstance = $modal.open({
-          templateUrl: 'createTemplateDialog.html',
-          controller: CreateTemplateController,
-          resolve: {}
-        });
+      var modalInstance = $modal.open({
+        templateUrl: 'createTemplateDialog.html',
+        controller: CreateTemplateController,
+        resolve: {}
+      });
 
-        modalInstance.result.then(function(templatename) {
-          LoadingDialog.show('Creating Template');
-          Machine.createTemplate($scope.machine, templatename).then(
-            function() {
-              LoadingDialog.hide();
-              $scope.machine.locked = true;
-            },
-            function(reason) {
-              LoadingDialog.hide();
-              $alert(reason.data);
-            }
-          );
-        });
-      }
+      modalInstance.result.then(function(templatename) {
+        LoadingDialog.show('Creating Template');
+        Machine.createTemplate($scope.machine, templatename).then(
+          function() {
+            LoadingDialog.hide();
+            $scope.machine.locked = true;
+          },
+          function(reason) {
+            LoadingDialog.hide();
+            $alert(reason.data);
+          }
+        );
+      });
+    }
 
     function refreshData() {
-        if ($scope.tabactive.actions || $scope.tabactive.sharing || $scope.tabactive.console) {
-          $scope.refreshSpinner = true;
-          Machine.get($routeParams.machineId)
-          .then(
-            function(data) {
-              $scope.machine = data;
-              $scope.refreshSpinner = false;
-            },
-            function(reason) {
-              $scope.refreshSpinner = false;
-              $ErrorResponseAlert(reason);
-            });
-        }else if ($scope.tabactive.changelog) {
-          $scope.refreshSpinner = true;
-          retrieveMachineHistory();
-        } else if ($scope.tabactive.portForwards) {
-          $scope.refreshSpinner = true;
-          Networks.listPortforwarding($scope.currentSpace.id, $routeParams.machineId)
-          .then(
-            function(data) {
-              $scope.portforwarding = data;
-              $scope.refreshSpinner = false;
-            },
-            function(reason) {
-              $ErrorResponseAlert(reason);
-              $scope.refreshSpinner = false;
-            }
-          );
-        }else if ($scope.tabactive.snapshots) {
-          $scope.refreshSpinner = true;
-          updatesnapshots();
-        }
+      if ($scope.tabactive.actions || $scope.tabactive.sharing || $scope.tabactive.console) {
+        $scope.refreshSpinner = true;
+        Machine.get($routeParams.machineId)
+        .then(
+          function(data) {
+            $scope.machine = data;
+            $scope.refreshSpinner = false;
+          },
+          function(reason) {
+            $scope.refreshSpinner = false;
+            $ErrorResponseAlert(reason);
+          });
+      }else if ($scope.tabactive.changelog) {
+        $scope.refreshSpinner = true;
+        retrieveMachineHistory();
+      } else if ($scope.tabactive.portForwards) {
+        $scope.refreshSpinner = true;
+        Networks.listPortforwarding($scope.currentSpace.id, $routeParams.machineId)
+        .then(
+          function(data) {
+            $scope.portforwarding = data;
+            $scope.refreshSpinner = false;
+          },
+          function(reason) {
+            $ErrorResponseAlert(reason);
+            $scope.refreshSpinner = false;
+          }
+        );
+      }else if ($scope.tabactive.snapshots) {
+        $scope.refreshSpinner = true;
+        updatesnapshots();
       }
+    }
 
     function start() {
-        LoadingDialog.show('Starting');
-        Machine.start($scope.machine).then(
-          function() {
-            LoadingDialog.hide();
-            changeSelectedTab('console');
-            $scope.updateMachineList();
-          },
-          function(reason) {
-            LoadingDialog.hide();
-            $alert(reason.data.backtrace);
-          }
-        );
-      }
+      LoadingDialog.show('Starting');
+      Machine.start($scope.machine).then(
+        function() {
+          LoadingDialog.hide();
+          changeSelectedTab('console');
+          $scope.updateMachineList();
+        },
+        function(reason) {
+          LoadingDialog.hide();
+          $alert(reason.data.backtrace);
+        }
+      );
+    }
 
     function reboot() {
-        LoadingDialog.show('Rebooting');
-        Machine.reboot($scope.machine).then(
-          function() {
-            LoadingDialog.hide();
-            changeSelectedTab('console');
-            $scope.updateMachineList();
-          },
-          function(reason) {
-            LoadingDialog.hide();
-            $alert(reason.data.backtrace);
-          }
-        );
-      }
+      LoadingDialog.show('Rebooting');
+      Machine.reboot($scope.machine).then(
+        function() {
+          LoadingDialog.hide();
+          changeSelectedTab('console');
+          $scope.updateMachineList();
+        },
+        function(reason) {
+          LoadingDialog.hide();
+          $alert(reason.data.backtrace);
+        }
+      );
+    }
 
     function reset() {
-        LoadingDialog.show('Reseting');
-        Machine.reset($scope.machine).then(
-          function() {
-            LoadingDialog.hide();
-            changeSelectedTab('console');
-            $scope.updateMachineList();
-          },
-          function(reason) {
-            LoadingDialog.hide();
-            $alert(reason.data.backtrace);
-          }
-        );
-      }
+      LoadingDialog.show('Reseting');
+      Machine.reset($scope.machine).then(
+        function() {
+          LoadingDialog.hide();
+          changeSelectedTab('console');
+          $scope.updateMachineList();
+        },
+        function(reason) {
+          LoadingDialog.hide();
+          $alert(reason.data.backtrace);
+        }
+      );
+    }
 
     function stop() {
       LoadingDialog.show('Stopping');
@@ -644,7 +644,7 @@
             function() {
               $scope.machine.description = $scope.machine.newdescription;
               $modalInstance.close({});
-            },function(reason) {
+            }, function(reason) {
               $modalInstance.close({});
               $ErrorResponseAlert(reason);
             }
@@ -667,7 +667,7 @@
       if ($scope.currentSpace) {
         Size.list($scope.currentSpace.id).then(function(sizes) {
           $scope.sizes = sizes;
-        },function(reason) {
+        }, function(reason) {
           $ErrorResponseAlert(reason);
         });
       }

@@ -17,8 +17,8 @@ angular.module('cloudscalers.services')
     },
     sendResetPasswordLink: function(emailaddress) {
       var data = {emailaddress: emailaddress};
-       return $http.post(cloudspaceconfig.apibaseurl + '/users/sendResetPasswordLink', data)
-       .then(
+      return $http.post(cloudspaceconfig.apibaseurl + '/users/sendResetPasswordLink', data)
+      .then(
         function(result) {
           return result;
         },
@@ -102,7 +102,7 @@ angular.module('cloudscalers.services')
     },
     registerInvitedUser: function(inviteUserToken, emailAddress, userName, passWord, confirmPassword) {
       var data = {inviteusertoken: inviteUserToken, emailaddress: emailAddress,
-         username: userName, password: passWord, confirmpassword: confirmPassword};
+        username: userName, password: passWord, confirmpassword: confirmPassword};
       return $http.post(cloudspaceconfig.apibaseurl + '/users/registerInvitedUser', data)
       .then(
         function(result) {

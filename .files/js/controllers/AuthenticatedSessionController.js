@@ -6,7 +6,7 @@
     .controller('AuthenticatedSessionController', AuthenticatedSessionController);
 
   function AuthenticatedSessionController($scope, User, Account, CloudSpace, LoadingDialog,
-    $route, $window, $timeout, $location, ipCookie, $ErrorResponseAlert, $modal, SessionData) {
+    $route, $window, $timeout, $location, ipCookie, $ErrorResponseAlert) {
 
     $scope.setCurrentCloudspace = setCurrentCloudspace;
     $scope.checkDisabledAccount = checkDisabledAccount;
@@ -84,7 +84,7 @@
     function checkDisabledAccount(status) {
       $scope.visibility = 'show';
       if (status === 'DISABLED') {
-        _.each($scope.currentUser.acl ,function(value, key) {
+        _.each($scope.currentUser.acl , function(value, key) {
           $scope.currentUser.acl[key] = 1;
         });
       }
@@ -108,7 +108,7 @@
     }
     function loadSpaces() {
       if ($scope.currentUser === undefined) {
-         return []; //return empty list when not logged in
+        return []; //return empty list when not logged in
       }
       return CloudSpace.list().then(function(cloudspaces) {
         $scope.cloudspaces = cloudspaces;
@@ -125,10 +125,10 @@
 
       var currentCloudSpaceFromList;
       if ($scope.currentSpace || vdc_id) {
-         var searchfor = vdc_id || $scope.currentSpace.id;
-         currentCloudSpaceFromList = _.find($scope.cloudspaces, function(cloudspace) {
-           return cloudspace.id === searchfor;
-         });
+        var searchfor = vdc_id || $scope.currentSpace.id;
+        currentCloudSpaceFromList = _.find($scope.cloudspaces, function(cloudspace) {
+          return cloudspace.id === searchfor;
+        });
       }
       if (!currentCloudSpaceFromList) {
         currentCloudSpaceFromList = _.first($scope.cloudspaces);
@@ -173,7 +173,7 @@
             $scope.currentSpace.acl = data.acl;
           }
           $scope.setCurrentAccount($scope.currentSpace.accountId);
-        },function(reason) {
+        }, function(reason) {
                 if (reason.status === 403) {
                   $scope.currentUser.acl.cloudspace = 0;
                 }

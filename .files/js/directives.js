@@ -34,14 +34,14 @@ angular.module('cloudscalers.directives', [])
         if (scope.rfb) {return;}
         scope.showPlaceholder = false;
         var rfb = new RFB({'target': $D('noVNC_canvas'),
-                     'encrypt': window.location.protocol === 'https:',
-                     'repeaterID': '',
-                     'true_color': true,
-                     'local_cursor': false,
-                     'shared': true,
-                     'view_only': false,
-                     'updateState': updateState
-                     });
+                    'encrypt': window.location.protocol === 'https:',
+                    'repeaterID': '',
+                    'true_color': true,
+                    'local_cursor': false,
+                    'shared': true,
+                    'view_only': false,
+                    'updateState': updateState
+                  });
         rfb.connect(scope.connectioninfo.host, scope.connectioninfo.port, '', scope.connectioninfo.path);
         scope.rfb = rfb;
       };
@@ -119,7 +119,7 @@ angular.module('cloudscalers.directives', [])
       element.focus();
     }
   };
-}).directive('menuLinkActiveLocation',function($window) {
+}).directive('menuLinkActiveLocation', function($window) {
   return {
     restrict: 'A',
     scope: {},
@@ -135,17 +135,17 @@ angular.module('cloudscalers.directives', [])
   return {
     require: 'ngModel',
     link: function(scope, element, attrs, modelCtrl) {
-       modelCtrl.$parsers.push(function(inputValue) {
-         if (inputValue === undefined) { return '';}
-         var transformedInput = inputValue.replace(/[^0-9]/g, '');
-         if (transformedInput !== inputValue) {
-           modelCtrl.$setViewValue(transformedInput);
-           modelCtrl.$render();
-         }
+      modelCtrl.$parsers.push(function(inputValue) {
+        if (inputValue === undefined) { return '';}
+        var transformedInput = inputValue.replace(/[^0-9]/g, '');
+        if (transformedInput !== inputValue) {
+          modelCtrl.$setViewValue(transformedInput);
+          modelCtrl.$render();
+        }
 
-         return transformedInput;
-       });
-     }
+        return transformedInput;
+      });
+    }
   };
 }).directive('autocomplete', function() {
   var index = -1;
@@ -208,7 +208,7 @@ angular.module('cloudscalers.directives', [])
         }
         watching = false;
         $scope.completing = false;
-        setTimeout(function() {watching = true;},1000);
+        setTimeout(function() {watching = true;}, 1000);
         $scope.setIndex(-1);
 
       };
@@ -267,7 +267,7 @@ angular.module('cloudscalers.directives', [])
         }, 200);
       }, true);
 
-      element[0].addEventListener('keydown',function(e) {
+      element[0].addEventListener('keydown', function(e) {
 
         var keycode = e.keyCode || e.which;
         var l = angular.element(this).find('li').length;

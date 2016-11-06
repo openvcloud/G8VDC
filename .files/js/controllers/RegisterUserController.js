@@ -38,7 +38,7 @@
         $scope.updateResultMessage = 'The given passwords do not match.';
         return;
       }
-      Users.registerInvitedUser($scope.registerToken,$scope.registerEmail,
+      Users.registerInvitedUser($scope.registerToken, $scope.registerEmail,
         $scope.registerUsername, $scope.registerNewPassword, $scope.registerRetypePassword)
       .then(
         function() {

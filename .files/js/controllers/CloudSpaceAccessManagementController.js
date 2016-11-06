@@ -207,9 +207,9 @@
           }));
         });
 
-        var emailInvited = _.find($scope.currentSpace.acl, function(user) {
-          return user.userGroupId === query;
-        });
+        // var emailInvited = _.find($scope.currentSpace.acl, function(user) {
+        //   return user.userGroupId === query;
+        // });
 
         // resolve the deferred object
         deferred.resolve({results: results});

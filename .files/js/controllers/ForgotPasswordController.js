@@ -15,7 +15,7 @@
       Users.sendResetPasswordLink($scope.resetpasswordinput.emailAddress).then(
         function() {
           $scope.resetpasswordresult.succeeded = true;
-        },function(reason) {
+        }, function(reason) {
           $scope.resetpasswordresult.error = reason.status;
         }
       );
