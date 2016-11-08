@@ -51,7 +51,7 @@
       for (var accountId in cloudspacesGroups) {
         var firstCloudSpace = cloudspacesGroups[accountId][0];
         account = {
-          id: accountId,
+          id: firstCloudSpace['accountId'],
           name: firstCloudSpace['accountName'],
           DCLocation: firstCloudSpace['accountDCLocation']
         };
