@@ -74,12 +74,13 @@
       setInitialAccount();
     }
     function setCurrentCloudspace(space) {
-      if (space === null || space === undefined) {
-        return;
+      var accountId = null;
+      if (space !== null && space !== undefined) {
+         accountId = space.accountId;
       }
       CloudSpace.setCurrent(space);
       $scope.currentSpace = space;
-      $scope.setCurrentAccount($scope.currentSpace.accountId);
+      $scope.setCurrentAccount(accountId);
     }
     function checkDisabledAccount(status) {
       $scope.visibility = 'show';
