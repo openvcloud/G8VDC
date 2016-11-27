@@ -9,7 +9,7 @@
   function CloudSpaceNavigatorController($scope, $modal, LocationsService, CloudSpace, Account,
     LoadingDialog, $timeout, $ErrorResponseAlert, $window) {
     $scope.isCollapsed = true;
-    $scope.locations = {};
+    $scope.locations = [];
     $scope.noAccount = false;
     $scope.AccountCloudSpaceHierarchy = undefined;
     $scope.createNewCloudSpace = createNewCloudSpace;
@@ -18,7 +18,7 @@
     $scope.$watch('cloudspaces + accounts', cloudspacesAndAccounts);
 
     // Initialization: Functions invokation logic
-    listLocationsAndAccounts();
+    $scope.$watch('currentUser', listLocationsAndAccounts);
 
     // Functions
     function listLocationsAndAccounts() {
@@ -122,7 +122,6 @@
       $scope.cancel = function() {
         $modalInstance.dismiss('cancel');
       };
-
       $scope.selectedLocation = $scope.locations[0].locationCode;
 
       $scope.changeLocation = function(location) {
