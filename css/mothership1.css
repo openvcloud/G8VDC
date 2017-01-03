@@ -40,3 +40,4 @@ body ul#resources li.resource div.heading ul.options {margin: 10px 10px 10px 0 !
  /*.half.copy.col-md-6 { padding-bottom: 26px;min-height: 209px;}*/
  .half .wideOne { width: 100%;margin-top: 15px;}
  .DesktopDeckColor + .half.col-md-6 {margin: 56px 0 0px 0;}
+ .tab-content { clear: both; }
