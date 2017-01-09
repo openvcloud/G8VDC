@@ -2,24 +2,25 @@
   <div class="subnavbar-inner">
     <div class="container relative">
       <a class="logo" href="#/decks"><img src=".files/img/logo-colored.png" title="Home" class="margin-vertical-small"></a>
-      <ul class="stick-top-right">
-        <li class="right">
-          <a class="logout sm-font" ng-if="currentUser" href="/restmachine/system/oauth/getOauthLogoutURl" >
-            <i class="fa fa-sign-out"></i>
-            <span>Logout</span>
-          </a>
-          <a class="logout sm-font" ng-if="!currentUser" href="/restmachine/system/oauth/authenticate" >
-            <i class="fa fa-sign-in"></i>
-            <span>Login</span>
-          </a>
-        </li>
-        <li class="right" ng-if="currentUser">
-          <a class="user-name" href="#/Profile" ng-cloak>
-            <i class="fa fa-user"></i>
-             {[currentUser.username]}
-          </a>
-        </li>
-      </ul>
+      <div ng-hide="!currentUser" class="dropdown stick-top-right gray" ng-controller="AuthenticatedSessionController">
+         <button class="logout sm-font dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+           <i class="fa fa-user"></i>
+           {[currentUser.username]}
+           <span class="caret"></span>
+         </button>
+         <ul class="dropdown-menu " aria-labelledby="dropdownMenu1">
+            <li ng-if="currentUser"><a class="user-name" href="#/Profile" ng-cloak>Profile</a></li>
+            <li><a ng-if="admin" target="_blank" href="/cbgrid">Admin Portal</a></li>
+            <li><a class="sm-font" ng-if="currentUser" href="/restmachine/system/oauth/getOauthLogoutURl" >
+                 <span>Logout</span>
+               </a>
+            </li>
+         </ul>
+      </div>
+      <a class="logout right sm-font" ng-if="!currentUser" href="/restmachine/system/oauth/authenticate" >
+        <i class="fa fa-sign-out"></i>
+        <span>Login</span>
+      </a>
     </div>
   </div>
   <nav class="navbar navbar-default" role="navigation">

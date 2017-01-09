@@ -35,23 +35,25 @@
 
     // Functions
     function checkUserAccountAccessibility() {
-      if (portalSessionCookie || jwt) {
-        if (!User.current() || User.current().api_key !== portalSessionCookie) {
-          User.getPortalLoggedinUser().then(function(username) {
-            if (username !== 'guest') {
-              autoLogin(username);
-            }
-            $scope.loadSpaces();
-          }, function(reason) {
-            $scope.loginError = reason.status;
-          });
-
-        }else {
-          autoLogin(User.current().username);
-          $scope.loadSpaces();
+  if (portalSessionCookie || jwt) {
+    if (!User.current() || User.current().api_key !== portalSessionCookie) {
+      User.getPortalLoggedinUser().then(function(user) {
+        $scope.admin = user.admin;
+        var username = user.name;
+        if (username !== 'guest') {
+          autoLogin(username);
         }
-      }
+        $scope.loadSpaces();
+      }, function(reason) {
+        $scope.loginError = reason.status;
+      });
+
+    }else {
+      autoLogin(User.current().username);
+      $scope.loadSpaces();
     }
+  }
+}
 
     function setInitialAccount() {
       if ($scope.currentSpace) {

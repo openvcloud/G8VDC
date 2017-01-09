@@ -89,10 +89,10 @@ angular.module('cloudscalers.services')
   };
 
   user.getPortalLoggedinUser = function() {
-    var url = '/restmachine//system/usermanager/whoami';
+    var url = '/restmachine/system/usermanager/whoami';
     return $http.post(url).then(
       function(result) {
-        return JSON.parse(result.data);
+        return result.data;
       },
       function(reason) {
         return $q.reject(reason);

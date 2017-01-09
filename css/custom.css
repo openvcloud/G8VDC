@@ -1702,6 +1702,7 @@ canvas {
   font-size: 14px;
   letter-spacing: 0px;
   text-transform: uppercase;
+  border: 1px solid #345E79;
 }
 /* line 312, less/custom.less */
 @media -sass-debug-info{filename{font-family:file\:\/\/less\/custom\.less}line{font-family:\00003312}}
@@ -3807,4 +3808,9 @@ html body #wrap .table-striped tbody:first-child th a {
   position: absolute;
   top: 0;
   right: 45px;
+}
+/* line 740, less/custom.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/less\/custom\.less}line{font-family:\00003740}}
+.stick-top-right ul li:hover{
+  background-color: #f5f5f5;
 }

@@ -12,19 +12,19 @@
     SessionData.setUser({username: '', api_key: '', tourTips: ''});
 
     var portalSessionCookie = $cookies['beaker.session.id'];
-    if (portalSessionCookie) {
-      User.getPortalLoggedinUser().then(function(username) {
-        if (username !== 'guest') {
-          User.portalLogin(username, portalSessionCookie);
-          var target = 'Decks';
-          var uri = new URI($window.location);
-          uri.filename(target);
-          $window.location = uri.toString();
-        }
-      }, function(reason) {
-        $scope.loginError = reason.status;
-      });
-    }
+    User.getPortalLoggedinUser().then(function(user) {
+          var username = user.name;
+          if (username !== 'guest') {
+            User.portalLogin(username, portalSessionCookie);
+            var target = 'Decks';
+            var uri = new URI($window.location);
+            uri.filename(target);
+            $window.location = uri.toString();
+          }
+        }, function(reason) {
+          $scope.loginError = reason.status;
+        });
+      }
 
     $scope.login = function() {
       $scope.$broadcast('autofill:update');
