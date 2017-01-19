@@ -290,19 +290,19 @@ Your Defense shield assigns a fix IP address during the initial OS boot.">
                         </div>
 
                         <div class="span2 txt-verdana">
-                            <h4 class="txt-15 txt-normal margin-bottom-none" ng-click="showLoginPaste($event)">Initial Login</h4>
+                            <h4 class="txt-15 txt-normal margin-bottom-none">Initial Login</h4>
                             <p>
                                 {[machine.accounts[0].login]}
-                                <a class="margin-left-small" ng-click="sendText(rfb, machine.accounts[0].login)"><i class="fa fa-clipboard" ng-show="loginPaste" title="Copy username to console"></i></a>
+                                <a class="margin-left-small" ng-click="sendText(rfb, machine.accounts[0].login)"><i class="fa fa-clipboard" title="Copy username to console"></i></a>
                             </p>
                         </div>
                         <div class="span2 txt-verdana">
-                            <h4 class="txt-15 txt-normal margin-bottom-none" ng-click="showPasswordPaste($event)">Initial Password</h4>
+                            <h4 class="txt-15 txt-normal margin-bottom-none">Initial Password</h4>
                             <div class="margin-left-xlarge margin-top-small">
                               <a ng-hide="passwordHidden" ng-click="passwordHidden = true" title="Show password" class="margin-right-small"><i class="fa fa-eye"></i></a>
                               <span ng-show="passwordHidden">{[machine.accounts[0].password]}</span>
                               <a ng-show="passwordHidden" ng-click="passwordHidden = false" title="Hide password" class="margin-right-small"><i class="fa fa-eye-slash"></i></a>
-                              <a ng-click="sendText(rfb, machine.accounts[0].password)"><i class="fa fa-clipboard" ng-show="passwordPaste" title="Copy password to console"></i></a>
+                              <a ng-click="sendText(rfb, machine.accounts[0].password)"><i class="fa fa-clipboard" title="Copy password to console"></i></a>
                             </div>
                         </div>
                         <div class="span6 margin-top-small right txt-right">
