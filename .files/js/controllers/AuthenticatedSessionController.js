@@ -38,8 +38,14 @@
   if (portalSessionCookie || jwt) {
     if (!User.current() || User.current().api_key !== portalSessionCookie) {
       User.getPortalLoggedinUser().then(function(user) {
-        $scope.admin = user.admin;
-        var username = user.name;
+        var username;
+        if (typeof user === 'string') {
+           $scope.admin = false;
+           username = user;
+        } else {
+           $scope.admin = user.admin;
+           username = user.name;
+        }
         if (username !== 'guest') {
           autoLogin(username);
         }
@@ -72,7 +78,11 @@
       User.portalLogin(username, portalSessionCookie);
       $scope.currentUser = User.current();
       $scope.currentUser.acl = {account: 0, cloudspace: 0, machine: 0};
-      $scope.currentSpace = CloudSpace.current();
+      var currentCloudSpace = CloudSpace.current();
+      if (vdc_id && currentCloudSpace.id != vdc_id) {
+         currentCloudSpace = null;
+      }
+      $scope.currentSpace = currentCloudSpace;
       setInitialAccount();
     }
     function setCurrentCloudspace(space) {
@@ -132,6 +142,11 @@
         currentCloudSpaceFromList = _.find($scope.cloudspaces, function(cloudspace) {
           return cloudspace.id === searchfor;
         });
+        if (vdc_id && !currentCloudSpaceFromList) {
+           // when vdc_id is asked and not found dont select anything
+           $scope.currentSpace = null;
+           return;
+        }
       }
       if (!currentCloudSpaceFromList) {
         currentCloudSpaceFromList = _.first($scope.cloudspaces);

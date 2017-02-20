@@ -1,5 +1,8 @@
 <div class="machineBox">
 <div>
+  <div ng-cloak ng-show="!currentSpace">
+     Please select a Cloud Space
+ </div>
   <div ng-cloak ng-show="(machines | filter:machineIsManageable).length == 0">
     <h1>Machines</h1>
     <p>Welcome to the Machines. Hit Create Machine and in less than 5 seconds it will be starting!</p>
