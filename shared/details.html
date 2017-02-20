@@ -146,7 +146,7 @@ Your Defense shield assigns a fix IP address during the initial OS boot.">
                   Rebuild
               </a>
           </li> -->
-          <li  machine.locked == false">
+          <li ng-show="currentUser.acl.account > 1 &&  machine.locked == false">
                   <a class="forTip" ng-click="convertToTemplate()" ng-class="{'action-disabled': machine.locked != false}" tourtip="Cconvert your machine into a template..">
                       <i class="fa fa-copy"></i>
                       Convert To Template
