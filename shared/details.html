@@ -146,26 +146,26 @@ Your Defense shield assigns a fix IP address during the initial OS boot.">
                   Rebuild
               </a>
           </li> -->
-          <li ng-show="currentUser.acl.account > 1 && machine.locked == false">
-                  <a class="forTip" ng-click="createTemplate()" ng-class="{'action-disabled': machine.locked != false}" tourtip="Create a template of your Machine. Template creation takes several minutes, you don`t need to keep this page open.">
+          <li  machine.locked == false">
+                  <a class="forTip" ng-click="convertToTemplate()" ng-class="{'action-disabled': machine.locked != false}" tourtip="Cconvert your machine into a template..">
                       <i class="fa fa-copy"></i>
-                      Create Template
+                      Convert To Template
                   </a>
-                  <script type="text/ng-template" id="createTemplateDialog.html">
+                  <script type="text/ng-template" id="convertToTemplateDialog.html">
                       <div class="modal-header">
-                          <h3>Create Template</h3>
+                          <h3>Convert To Template</h3>
                   </div>
                   <div class="modal-body">
                       <ul>
-                          Name: <input ng-model="createtemplate.name" type="text" class="input-large" />
+                          Name: <input ng-model="convertToTemplate.name" type="text" class="input-large" />
                       </ul>
                       <div class="alert alert-warning margin-top-large">
-                      Creating a template might take some time during this process your Virtual Machine will be locked.
-                      Limited actions will be available.
+                      This action will convert your current Virtual Machine into a template.
+                      The current Virtual Machine will not be available any longer.
                       </div>
                   </div>
                   <div class="modal-footer">
-                      <button class="btn btn-primary ok" ng-click="ok()">Create Template</button>
+                      <button class="btn btn-primary ok" ng-click="ok()">Convert To Template</button>
                       <button class="btn cancel" ng-click="cancel()">Cancel</button>
                   </div>
               </script>
