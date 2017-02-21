@@ -79,7 +79,7 @@
       $scope.currentUser = User.current();
       $scope.currentUser.acl = {account: 0, cloudspace: 0, machine: 0};
       var currentCloudSpace = CloudSpace.current();
-      if (vdc_id && currentCloudSpace.id != vdc_id) {
+      if (vdc_id && currentCloudSpace && currentCloudSpace.id != vdc_id) {
          currentCloudSpace = null;
       }
       $scope.currentSpace = currentCloudSpace;
