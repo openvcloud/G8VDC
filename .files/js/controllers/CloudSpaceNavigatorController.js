@@ -37,11 +37,10 @@
       $event.preventDefault();
       $event.stopPropagation();
       var anchor = $($event.currentTarget);
-      $(anchor.attr('href')).toggleClass('collapse');
-      $(anchor.attr('href')).toggleClass('open');
-      anchor.parents('.panel-group').find('.panel-heading.open')
-        .not(anchor.parents('.panel-heading')).removeClass('open');
-      anchor.parents('.panel-heading').toggleClass('open');
+       anchor.parents('.panel-group').find('.panel-heading.open')
+         .not(anchor.parents('.panel-heading')).removeClass('open');
+       anchor.parents('.panel-heading').toggleClass('open');
+       anchor.parents('.panel-default').find('.panel-collapse').toggleClass('collapse');
     };
 
     function buildAccountCloudSpaceHierarchy() {
