@@ -26,9 +26,9 @@
     var vdc_id = vdccontrol.vdc_id;
 
     // Binding and Watch
-    $scope.$watch('cloudspaces', cloudspaces, true);
-    $scope.$watch('currentAccount.id + currentAccount.userRightsOnAccount', CurrentAccountIdAndUserRights);
-    $scope.$watch('currentSpace', currentSpace);
+    $scope.$watchCollection('cloudspaces', cloudspaces, true);
+    $scope.$watchCollection('currentAccount.id + currentAccount.userRightsOnAccount', CurrentAccountIdAndUserRights);
+    $scope.$watchCollection('currentSpace', currentSpace, true);
 
     // Initialization: Functions invokation logic
     checkUserAccountAccessibility();
