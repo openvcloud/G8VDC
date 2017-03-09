@@ -15,7 +15,7 @@
 	.table.users-table .header .btn { padding: 3px 5px; }
 	.white p { line-height: 24px !important; }
 	.bottomFooter ul li a, .bottomFooter ul li { color: #FFF; font-family: arial, sans-serif; }
-	.gray .panel-heading .panel-title>a{ background: url(../img/images/acc-arrow-close.png) 13px 10px no-repeat #F3F3F3 !important; padding: 8px 25px; color: #4f4f4f !important; }
+	.gray .panel-heading .panel-title>a{ background: url(../.files/img/images/acc-arrow-close.png) 13px 10px no-repeat #F3F3F3 !important; padding: 8px 25px; color: #4f4f4f !important; }
 	.user-name, .form-horizontal.contact_form label, .inputStyle, .areaStyle textarea { font-size: 12px !important; }
 	h4, .h4 { font-size: 18px; }
 	.question-symbol i { font-size: 18px !important; }
@@ -46,7 +46,7 @@
 	.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus { padding: 5px 10px; }
 	.nav-tabs>li>a { padding: 5px 10px !important; }
 	.nav-tabs { margin:  10px 0; }
-	.gray .panel-heading.open .panel-title>a{ background: url(../img/images/acc-arrow-open.png) 11px 11px no-repeat #F3F3F3 !important; padding: 8px 25px; color: #4f4f4f !important; }
+	.gray .panel-heading.open .panel-title>a{ background: url(../.files/img/images/acc-arrow-open.png) 11px 11px no-repeat #F3F3F3 !important; padding: 8px 25px; color: #4f4f4f !important; }
 	.osimage-label { width: 9% !important; }
 	.account-container.stacked { width: 544px !important; }
 	.signUpForm .inputWrap { width: 69% !important; }
@@ -99,8 +99,8 @@
 	.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus { padding: 5px 10px; background: #345E79;color: #FFF;}
 	.nav-tabs>li>a { padding: 5px 10px !important; }
 	.nav-tabs { margin:  10px 0; }
-	.gray .panel-heading .panel-title>a{ background: url(../img/images/acc-arrow-close.png) 13px 9px no-repeat #F3F3F3 !important; padding: 8px 25px; color: #4f4f4f !important; }
-	.gray .panel-heading.open .panel-title>a{ background: url(../img/images/acc-arrow-open.png) 11px 10px no-repeat #F3F3F3 !important; padding: 8px 25px; color: #4f4f4f !important; }
+	.gray .panel-heading .panel-title>a{ background: url(../.files/img/images/acc-arrow-close.png) 13px 9px no-repeat #F3F3F3 !important; padding: 8px 25px; color: #4f4f4f !important; }
+	.gray .panel-heading.open .panel-title>a{ background: url(../.files/img/images/acc-arrow-open.png) 11px 10px no-repeat #F3F3F3 !important; padding: 8px 25px; color: #4f4f4f !important; }
 	.osimage-label { width: 12% !important; }
 	#decks-list li { font-size: 13px !important; }
 	.bottomFooter ul { margin-left: -56px; }

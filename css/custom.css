@@ -638,8 +638,8 @@ h2,
 }
 /* line 126, less/custom.less */
 @media -sass-debug-info{filename{font-family:file\:\/\/less\/custom\.less}line{font-family:\00003126}}
-.dropdown-menu {
-  box-shadow: none;
+.subnavbar-inner .dropdown-menu {
+  width: 100%;
 }
 /* line 127, less/custom.less */
 @media -sass-debug-info{filename{font-family:file\:\/\/less\/custom\.less}line{font-family:\00003127}}
@@ -1447,12 +1447,12 @@ canvas {
   font-size: 14px;
   color: #000000 !important;
   font-weight: normal;
-  background: url(../img/images/acc-arrow-close.png) 11px 18px no-repeat #F3F3F3;
+  background: url(../.files/img/images/acc-arrow-close.png) 11px 18px no-repeat #F3F3F3;
 }
 /* line 258, less/custom.less */
 @media -sass-debug-info{filename{font-family:file\:\/\/less\/custom\.less}line{font-family:\00003258}}
 .gray .panel-heading.open .panel-title > a {
-  background: url(../img/images/acc-arrow-open.png) 9px 19px no-repeat #F3F3F3;
+  background: url(../.files/img/images/acc-arrow-open.png) 9px 19px no-repeat #F3F3F3;
 }
 /* line 259, less/custom.less */
 @media -sass-debug-info{filename{font-family:file\:\/\/less\/custom\.less}line{font-family:\00003259}}
@@ -1477,7 +1477,7 @@ canvas {
 /* line 263, less/custom.less */
 @media -sass-debug-info{filename{font-family:file\:\/\/less\/custom\.less}line{font-family:\00003263}}
 .gray .panel-title > a:first-child:hover {
-  background: url(../img/images/acc-arrow-close.png) 11px 18px no-repeat #F3F3F3;
+  background: url(../.files/img/images/acc-arrow-close.png) 11px 18px no-repeat #F3F3F3;
   text-decoration: none;
 }
 /* line 264, less/custom.less */
@@ -1637,6 +1637,7 @@ canvas {
 .create-cloudspace-container {
   background: #FFF;
   display: block;
+  padding-left: 40px !important;
 }
 /* line 288, less/custom.less */
 @media -sass-debug-info{filename{font-family:file\:\/\/less\/custom\.less}line{font-family:\00003288}}
