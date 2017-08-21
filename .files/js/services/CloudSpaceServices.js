@@ -65,8 +65,8 @@ angular.module('cloudscalers.services')
     getOpenvpnConfig: function(cloudspaceId) {
       return $window.open(cloudspaceconfig.apibaseurl + '/cloudspaces/getOpenvpnConfig?cloudspaceId=' + cloudspaceId);
     },
-    addUser: function(cloudspaceId, space, user, accessType) {
-      var data = {cloudspaceId: cloudspaceId, accesstype: accessType, userId: user};
+    addUser: function(space, user, accessType) {
+      var data = {cloudspaceId: space.id, accesstype: accessType, userId: user};
       return $http.post(cloudspaceconfig.apibaseurl + '/cloudspaces/addUser', data)
       .then(
         function(result) { return result.data;},
