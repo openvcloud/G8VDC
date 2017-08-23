@@ -357,6 +357,11 @@ input:-webkit-autofill:focus {
 .modal.fade.in {
   top: 50%;
 }
+
+.modal.fade.modal-vm-resize.in {
+  top: 30% !important;
+}
+
 /* line 76, less/custom.less */
 @media -sass-debug-info{filename{font-family:file\:\/\/less\/custom\.less}line{font-family:\0000376}}
 .modal.fade {
@@ -2219,6 +2224,10 @@ body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operatio
   background: url(../img/machine.jpg) no-repeat;
   color: #77777b;
   cursor: default;
+}
+.packages {
+    overflow: scroll;
+    height: 550px;;
 }
 /* line 399, less/custom.less */
 @media -sass-debug-info{filename{font-family:file\:\/\/less\/custom\.less}line{font-family:\00003399}}

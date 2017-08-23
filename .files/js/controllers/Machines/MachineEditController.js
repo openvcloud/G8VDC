@@ -252,6 +252,7 @@
 
       var modalInstance = $modal.open({
         templateUrl: 'resizeMachineDialog.html',
+        windowClass: 'modal-vm-resize',
         controller: function($scope, $modalInstance) {
           $scope.sizes = sizes;
           $scope.sizepredicate = 'memory';
