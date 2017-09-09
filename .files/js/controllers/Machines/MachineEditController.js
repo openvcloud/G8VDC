@@ -533,18 +533,7 @@
         $scope.refreshSpinner = true;
         retrieveMachineHistory();
       } else if ($scope.tabactive.portForwards) {
-        $scope.refreshSpinner = true;
-        Networks.listPortforwarding($scope.currentSpace.id, $routeParams.machineId)
-        .then(
-          function(data) {
-            $scope.portforwarding = data;
-            $scope.refreshSpinner = false;
-          },
-          function(reason) {
-            $ErrorResponseAlert(reason);
-            $scope.refreshSpinner = false;
-          }
-        );
+        $scope.$broadcast('updatePortforwardListBroadcast');
       }else if ($scope.tabactive.snapshots) {
         $scope.refreshSpinner = true;
         updatesnapshots();

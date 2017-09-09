@@ -24,6 +24,7 @@
 
     $scope.$watch('currentSpace.id + currentSpace.status', currentSpaceIdAndStatus);
     $scope.$on('$destroy', destroy);
+    $scope.$on('updatePortforwardListBroadcast', $scope.updatePortforwardList);
 
     function updatePortforwardList() {
       $scope.portforwardLoader = true;
