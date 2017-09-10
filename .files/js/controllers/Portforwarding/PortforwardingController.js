@@ -29,13 +29,16 @@
     function updatePortforwardList() {
       $scope.portforwardLoader = true;
       if ($routeParams.machineId) {
+        $scope.sharedstate.refreshSpinner = true;
         Networks.listPortforwarding($scope.currentSpace.id, $routeParams.machineId).then(
             function(data) {
               $scope.portforwarding = data;
+              $scope.sharedstate.refreshSpinner = false;
               $scope.portforwardLoader = false;
             },
             function(reason) {
               $ErrorResponseAlert(reason);
+              $scope.sharedstate.refreshSpinner = false;
               $scope.portforwardLoader = false;
             }
           );

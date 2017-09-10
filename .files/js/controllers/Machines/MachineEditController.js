@@ -25,7 +25,8 @@
     $scope.deleteSnapshot = deleteSnapshot;
     $scope.cloneMachine = cloneMachine;
     $scope.convertToTemplate = convertToTemplate;
-    $scope.refreshSpinner = false;
+    $scope.sharedstate = {};
+    $scope.sharedstate.refreshSpinner = false;
     $scope.refreshData = refreshData;
     $scope.start = start;
     $scope.reboot = reboot;
@@ -205,11 +206,11 @@
       $scope.machineHistory = {};
       Machine.getHistory($routeParams.machineId)
         .then(function(data) {
-          $scope.refreshSpinner = false;
+          $scope.sharedstate.refreshSpinner = false;
           $scope.machineHistory = data;
         },
         function(reason) {
-          $scope.refreshSpinner = false;
+          $scope.sharedstate.refreshSpinner = false;
           $ErrorResponseAlert(reason);
         });
     }
@@ -334,9 +335,9 @@
           $timeout(function() {
             LoadingDialog.hide();
           }, 1500);
-          $scope.refreshSpinner = false;
+          $scope.sharedstate.refreshSpinner = false;
         }, function(reason) {
-          $scope.refreshSpinner = false;
+          $scope.sharedstate.refreshSpinner = false;
           $ErrorResponseAlert(reason);
         });
     }
@@ -518,24 +519,25 @@
 
     function refreshData() {
       if ($scope.tabactive.actions || $scope.tabactive.sharing || $scope.tabactive.console) {
-        $scope.refreshSpinner = true;
+        $scope.sharedstate.refreshSpinner = true;
         Machine.get($routeParams.machineId)
         .then(
           function(data) {
             $scope.machine = data;
-            $scope.refreshSpinner = false;
+            $scope.sharedstate.refreshSpinner = false;
           },
           function(reason) {
-            $scope.refreshSpinner = false;
+            $scope.sharedstate.refreshSpinner = false;
             $ErrorResponseAlert(reason);
           });
       }else if ($scope.tabactive.changelog) {
-        $scope.refreshSpinner = true;
+        $scope.sharedstate.refreshSpinner = true;
         retrieveMachineHistory();
       } else if ($scope.tabactive.portForwards) {
+        $scope.sharedstate.refreshSpinner = true;
         $scope.$broadcast('updatePortforwardListBroadcast');
       }else if ($scope.tabactive.snapshots) {
-        $scope.refreshSpinner = true;
+        $scope.sharedstate.refreshSpinner = true;
         updatesnapshots();
       }
     }
