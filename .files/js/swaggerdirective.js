@@ -11,7 +11,7 @@ angular.module('cloudscalers')
           url: '/restmachine/system/docgenerator/prepareCatalog?' +
             'actors=cloudapi__machines,cloudapi__accounts,cloudapi__externalnetwork,' +
             'cloudapi__cloudspaces,cloudapi__disks,cloudapi__images,' +
-            'cloudapi__locations,cloudapi__portforwarding,cloudapi__sizes,' +
+            'cloudapi__locations,cloudapi__portforwarding,' +
             'cloudapi__users&format=jsonraw&skip_private=true',
           validatorUrl: null,
           apiKey: api_key,

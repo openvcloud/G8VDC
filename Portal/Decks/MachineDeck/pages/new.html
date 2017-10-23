@@ -11,30 +11,25 @@
           <h2>Description:</h2>
           <textarea ng-model="machine.description" type="text" class="input-xxlarge" />
       </div>
+      <div class="machineMemory nameField">
+        <h2>Memory in MiB *:</h2>
+        <input ng-model="machine.memory" value="512" min="128" step="128" type="number" class="input-small" />
+      </div>
+      <div class="machineVCPUS nameField">
+        <h2>Number of virtual CPUs *:</h2>
+        <input ng-model="machine.vcpus" min="1" type="number" class="input-small"/>
+      </div>
       <div class="osimage-label nameField clear-both inline-block">
           <h2>OS Image</h2>
       </div>
       <div class="controls controls2">
         <div ng-include src="'Portal/Decks/MachineDeck/includes/image_list.html'"></div>
       </div>
-      <div class="machineWrap">
-        <h2>Package *:</h2>
-        <div ng-include src="'Portal/Decks/MachineDeck/includes/packages_list.html'"></div>
+      <div class="machineBootDiskSize nameField">
+        <h2>Boot disk size in GiB *:</h2>
+        <input ng-model="machine.disksize" ng-min="mindisksize" type="number" class="input-small"/>
       </div>
-      <div>
-        <h2>Increase disk size to:</h2>
-        <div class="machineList" >
-            <ul class="storage-size-list inline-block margin-all-none padding-all-none">
-             <li ng-repeat="diskSize in packageDisks">
-             <h1></h1>
-                <button type="button" class="btn btn-selector table-cell disk disk-{[diskSize]}" ng-class="{active : diskSize == machine.disksize}" ng-click="machine.disksize = diskSize">
-                  {[diskSize]} GB at SSD speed<br>
-                </button>
-              </li>
-            </ul>
-        </div>
-      </div>
-      <div class="form-actions">
+      <div class="form-actions clear-both">
           <button class="btn btn-info btn-large mainButton" ng-click="saveNewMachine()" ng-disabled="!isValid()">Create</button>
       </div>
     </div>

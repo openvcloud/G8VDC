@@ -88,9 +88,9 @@ angular.module('cloudscalers.services')
         }
       );
     },
-    create: function(cloudspaceId, name, description, sizeId, imageId, disksize, archive, region, replication) {
+    create: function(cloudspaceId, name, description, vcpus, memory, imageId, disksize, archive, region, replication) {
       var data = {cloudspaceId: cloudspaceId, name: name, description: description,
-        sizeId: sizeId, imageId: imageId, disksize: disksize, archive: archive,
+        vcpus: vcpus, memory: memory, imageId: imageId, disksize: disksize, archive: archive,
         region: region, replication: replication};
       var url = cloudspaceconfig.apibaseurl + '/machines/create';
       return $http.post(url, data).then(
@@ -386,18 +386,4 @@ angular.module('cloudscalers.services')
     }
   };
 })
-.factory('Size', function($http, $q) {
-  return {
-    list: function(cloudspaceId) {
-      var data = {cloudspaceId: cloudspaceId};
-      return $http.post(cloudspaceconfig.apibaseurl + '/sizes/list', data)
-      .then(
-        function(result) {
-          return result.data;
-        }, function(reason) {
-          return $q.reject(reason);
-        }
-      );
-    }
-  };
-});
+;

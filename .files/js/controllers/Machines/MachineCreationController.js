@@ -10,7 +10,6 @@
     $scope.machine = {
       name: '',
       description: '',
-      sizeId: '',
       imageId: '',
       disksize: ''
     };
@@ -20,11 +19,10 @@
     $scope.createredirect = createredirect;
     $scope.saveNewMachine = saveNewMachine;
     $scope.isValid = isValid;
+    $scope.mindisksize = 1;
 
-    $scope.$watch('images', images, true);
-    $scope.$watch('sizes', sizes, true);
     $scope.$watch('machine.imageId', machineImageId, true);
-    $scope.$watch('machine.sizeId', machineSizeId, true);
+    $scope.$watch('images', images, true);
 
     function images() {
       if ($scope.images) {
@@ -33,54 +31,10 @@
       }
     }
 
-    function sizes() {
-      $scope.machine.sizeId = _.min($scope.sizes, function(size) { return size.vcpus;}).id;
-    }
-
     function machineImageId() {
       if ($scope.machine.imageId) {
         $scope.packageDisks = [];
-        var selectedImageSize = _.findWhere($scope.images, {id: parseInt($scope.machine.imageId)}).size;
-        var disks = _.findWhere($scope.sizes, {id: $scope.machine.sizeId}).disks;
-        for (var i = 0; i <= disks.length - 1 ; i++) {
-          if (disks[i] >= selectedImageSize) {
-            $scope.packageDisks.push(disks[i]);
-          }
-        }
-        if ($scope.packageDisks.length > 0) {
-          $scope.packageDisks.sort(function(a, b) {
-            return a - b;
-          });
-          $scope.machine.disksize = $scope.packageDisks[0];
-        }else {
-          $scope.machine.disksize = '';
-        }
-
-      }
-    }
-
-    function machineSizeId() {
-      if ($scope.machine.sizeId) {
-        var disks = _.findWhere($scope.sizes, {id: $scope.machine.sizeId}).disks;
-        if ($scope.machine.imageId) {
-          $scope.packageDisks = [];
-          var selectedImageSize = _.findWhere($scope.images, {id: parseInt($scope.machine.imageId)}).size;
-          for (var i = 0; i <= disks.length - 1 ; i++) {
-            if (disks[i] >= selectedImageSize) {
-              $scope.packageDisks.push(disks[i]);
-            }
-          }
-        }else {
-          $scope.packageDisks = disks;
-        }
-        if ($scope.packageDisks.length > 0) {
-          $scope.packageDisks.sort(function(a, b) {
-            return a - b;
-          });
-          $scope.machine.disksize = $scope.packageDisks[0];
-        }else {
-          $scope.machine.disksize = '';
-        }
+        $scope.mindisksize = _.findWhere($scope.images, {id: $scope.machine.imageId}).size;
       }
     }
 
@@ -97,7 +51,7 @@
     function saveNewMachine() {
       LoadingDialog.show('Creating machine');
       Machine.create($scope.currentSpace.id, $scope.machine.name, $scope.machine.description,
-      $scope.machine.sizeId, $scope.machine.imageId, $scope.machine.disksize,
+      $scope.machine.vcpus, $scope.machine.memory, $scope.machine.imageId, $scope.machine.disksize,
       $scope.machine.archive,
       $scope.machine.region, $scope.machine.replication)
       .then(
@@ -108,7 +62,8 @@
             cloudspaceId: $scope.currentSpace.id,
             name: $scope.machine.name,
             description: $scope.machine.description,
-            sizeId: $scope.machine.sizeId,
+            memory: $scope.machine.memory,
+            vcpus: $scope.machine.vcpus,
             imageId: $scope.machine.imageId,
             disksize: $scope.machine.disksize,
             archive: $scope.machine.archive,
@@ -125,9 +80,11 @@
 
     function isValid() {
       return $scope.machine.name !== '' &&
-        $scope.machine.sizeId !== '' &&
+        $scope.machine.memory !== '' &&
+        $scope.machine.vcpus !== '' &&
         $scope.machine.imageId !== '' &&
-        $scope.machine.disksize !== '';
+        $scope.machine.disksize !== '' &&
+        $scope.machine.disksize >= $scope.mindisksize;
     }
   }
 })();

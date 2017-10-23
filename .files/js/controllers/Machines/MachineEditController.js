@@ -6,7 +6,7 @@
     .controller('MachineEditController', MachineEditController);
 
   function MachineEditController($scope, $routeParams, $timeout, $location, Machine,
-    Networks, Size, confirm, $alert, $modal, LoadingDialog, $ErrorResponseAlert) {
+    Networks, confirm, $alert, $modal, LoadingDialog, $ErrorResponseAlert) {
     $scope.tabState = 'currentDisks';
     $scope.oldMachine = {};
     $scope.imagesList = [];
@@ -48,9 +48,6 @@
     $scope.$watch('tabactive.changelog', tabActiveChangeLog, true);
     $scope.$watch('images', images);
     $scope.$watch('machine', machine, true);
-    $scope.$watch('machine', updateMachineSize, true);
-    $scope.$watch('sizes', updateMachineSize, true);
-    $scope.$watch('images', updateMachineSize, true);
     $scope.$watch('tabactive.snapshots', tabActiveSpanShots, true);
     $scope.$watch('currentSpace.id', currentSpaceId);
 
@@ -220,19 +217,6 @@
         return;
       }
       retrieveMachineHistory();
-    }
-
-    function updateMachineSize() {
-      $scope.$watch('machine', function() {
-          if ($scope.machine) {
-            $scope.machineinfo = {};
-            var size = _.findWhere($scope.sizes, {id: $scope.machine.sizeid});
-            $scope.machineinfo['size'] = size;
-            var image = _.findWhere($scope.images, {id: $scope.machine.imageid});
-            $scope.machineinfo['image'] = image;
-            $scope.machineinfo['storage'] = $scope.machine.storage;
-          }
-        }, true);
     }
 
     function images() {

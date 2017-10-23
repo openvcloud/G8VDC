@@ -5,7 +5,7 @@
     .module('cloudscalers.controllers')
     .controller('MachineController', MachineController);
 
-  function MachineController($scope, Machine, Size, Image,
+  function MachineController($scope, Machine, Image,
     $ErrorResponseAlert, $location, $alert, $rootScope) {
 
     $scope.packageDisks = '';
@@ -17,10 +17,6 @@
     $scope.$watch('currentSpace', currentSpaceAccountId);
     $rootScope.$on('callUpdateMachineList', callUpdateMachineList);
     $scope.machineIsManageable = machineIsManageable;
-
-    $scope.$watch('machines', updateMachineSizes);
-    $scope.$watch('sizes', updateMachineSizes, true);
-    $scope.$watch('images', updateMachineSizes, true);
 
     function currentSpaceAccountId() {
       if ($scope.currentSpace) {
@@ -80,11 +76,6 @@
     function currentSpaceId() {
       if ($scope.currentSpace) {
         $scope.updateMachineList();
-        Size.list($scope.currentSpace.id).then(function(sizes) {
-          $scope.sizes = sizes;
-        }, function(reason) {
-          $ErrorResponseAlert(reason);
-        });
       }
     }
 
@@ -96,16 +87,5 @@
       return machine.status && machine.status !== 'DESTROYED' && machine.status !== 'ERROR';
     }
 
-    function updateMachineSizes() {
-      $scope.machineinfo = {};
-      _.each($scope.machines, function(element) {
-        $scope.machineinfo[element.id] = {};
-        var size = _.findWhere($scope.sizes, {id: element.sizeId});
-        $scope.machineinfo[element.id]['size'] = size;
-        var image = _.findWhere($scope.images, {id: element.imageId});
-        $scope.machineinfo[element.id]['image'] = image;
-        $scope.machineinfo[element.id]['storage'] = element.storage;
-      });
-    }
   }
 })();
