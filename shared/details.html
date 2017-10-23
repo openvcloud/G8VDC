@@ -49,7 +49,19 @@ Your Defense shield assigns a fix IP address during the initial OS boot.">
                             <li class="initial">
                                 <div class="row">
                                     <div class="span3 line-height">Initial Credentials</div>
-                                    <div class="span9 clear-none inline-block margin-vertical-small"><span class="login-credentials margin-right-xlarge" tourtip="Your private IP address. To access publicly, set a port forward. Advanced users can configure the Defense Shield">Login: {[machine.accounts[0].login]}</span> <span tourtip="Initial login credentials, this is an admin user. Linux: Use sudo to execute commands with root privileges. Windows login is an administrator user.">Password: {[machine.accounts[0].password]}</span></div>
+                                    <div class="span9 clear-none inline-block margin-vertical-small">
+                                        <span class="login-credentials margin-right-xlarge" tourtip="Your private IP address. To access publicly, set a port forward. Advanced users can configure the Defense Shield">
+                                            Login: {[machine.accounts[0].login]}
+                                        </span>
+                                        <div tourtip="Initial login credentials, this is an admin user. Linux: Use sudo to execute commands with root privileges. Windows login is an administrator user.">
+                                            Password: 
+                                            <span class="margin-left-xlarge margin-top-small">
+                                            <a ng-hide="passwordHidden" ng-click="passwordHidden = true" title="Show password" class="margin-right-small"><i class="fa fa-eye"></i></a>
+                                            <span ng-show="passwordHidden">{[machine.accounts[0].password]}</span>
+                                            <a ng-show="passwordHidden" ng-click="passwordHidden = false" title="Hide password" class="margin-right-small"><i class="fa fa-eye-slash"></i></a>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                             </li>
                             <li>
